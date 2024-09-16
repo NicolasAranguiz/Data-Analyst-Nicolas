@@ -1,4 +1,5 @@
 # Data-Analyst-Nicolas
+
 # Parking Violations in Vancouver: Data Analysis Project
 
 ## 1. Exploratory Data Analysis (EDA)
@@ -7,137 +8,174 @@
 *Parking Violations in Vancouver: An Exploratory Data Analysis*
 
 **Objective:**  
-The primary goal of this EDA is to analyze the parking ticket violations in Vancouver to understand trends, such as which bylaws are most frequently violated and how these violations are distributed across the city and over time.
+The primary goal of this project is to analyze the parking violations data from Vancouver, identifying which bylaws are most frequently violated and how these violations have changed year-over-year.
 
 **Dataset:**  
-The dataset contains parking ticket information from Vancouver, including violation dates, bylaw numbers, and geographic data (street and block details).
+The parking ticket dataset includes the following fields:
+- **Block**: The block number where the violation occurred.
+- **Street**: The name of the street where the parking violation took place.
+- **EntryDate**: The date when the violation was recorded.
+- **Bylaw**: The bylaw number corresponding to the violation.
+- **Section**: The section of the bylaw that was violated.
 
 **Methodology:**
-1. **Step 1:** The parking ticket data was uploaded to **AWS S3**, where it was organized by year in the `Landing/` folder.
-2. **Step 2:** Data ingestion was performed using **AWS Glue** to load the data from S3 for cleaning and transformation.
-3. **Step 3:** Basic data cleaning was done using **AWS Glue DataBrew**, including handling missing values and standardizing column formats.
-4. **Step 4:** Initial exploratory analysis was performed on the cleaned data, focusing on identifying high-frequency violations, the most violated bylaws, and violation trends over time using **AWS Athena** for queries on the dataset stored in S3.
-5. **Step 5:** Visualizations were created using **Amazon QuickSight** to generate heatmaps and bar charts that display the distribution of violations across Vancouver.
+1. **Data Collection and Preparation**:
+   - The parking ticket data was stored in **AWS S3**, organized by year under the `Landing/` folder.
+   - The data was cleaned using **AWS Glue DataBrew**, including handling missing values and correcting formats in columns such as "EntryDate" and "Bylaw."
 
-**Tools and Technologies:**  
-- **AWS S3**: Storage of raw and processed data.
-- **AWS Glue DataBrew**: For data cleaning and preprocessing.
-- **AWS Athena**: For running SQL queries on the dataset.
-- **Amazon QuickSight**: For visualizing data trends.
+2. **Descriptive Statistics**:
+   - Using **AWS Athena**, SQL queries were executed to calculate summary statistics (e.g., the number of violations per bylaw, average violations per year).
+   - Frequency distributions for each bylaw were computed, helping identify the most violated bylaws.
 
-**Deliverables:**  
-- Heatmaps displaying geographic patterns of parking violations.
-- Bar charts showing the frequency of bylaw violations.
+3. **Data Visualization**:
+   - A PDF was generated from **Excel** to visually represent the trends of parking violations between 2020 and 2024.
+   - The visualization highlights the number of parking tickets issued under different bylaws, revealing patterns over time.
+
+4. **Insights and Findings**:
+   - The analysis showed that **Bylaw 2952** (parking meters) consistently had the highest number of violations.
+   - Violations were concentrated in downtown areas, with peak violation periods during weekdays.
+
+**Tools and Technologies:**
+- **AWS S3**: For data storage and organization.
+- **AWS Glue DataBrew**: For cleaning and preparing the dataset.
+- **AWS Athena**: For querying the dataset and generating descriptive statistics.
+- **Excel**: For generating visualizations.
+
+**Deliverables:**
+- A cleaned dataset stored in **AWS S3**.
+- A detailed analysis report with descriptive statistics and insights.
+- A PDF report with visualizations of the parking violation trends by bylaw.
 
 ---
 
 ## 2. Descriptive Analysis
 
 **Project Title:**  
-*Understanding Parking Violation Trends in Vancouver: A Descriptive Analysis*
+*Descriptive Analysis of Parking Violations in Vancouver*
 
 **Objective:**  
-This section focuses on summarizing the data to provide an overview of the most common violations, including the total number of violations per bylaw and year-over-year changes.
+The purpose of this analysis is to summarize the parking ticket data in Vancouver and identify trends over the past five years, focusing on which bylaws were most frequently violated.
 
 **Dataset:**  
-Parking ticket data categorized by bylaw and geographic location over several years.
+The dataset includes parking ticket records from multiple years, detailing fields such as violation date, bylaw, and location.
 
 **Methodology:**
-1. **Step 1:** Data storage was managed using **AWS S3**, organized by year in the `Processed/` folder after the data wrangling step.
-2. **Step 2:** Descriptive statistics, such as the average number of violations per bylaw and total violations per year, were calculated using **AWS Athena** queries.
-3. **Step 3:** The analysis results were stored in the `Analytics/` folder on S3.
-4. **Step 4:** **Amazon QuickSight** was used to generate bar charts that summarized the total number of violations for each bylaw.
+1. **Data Storage and Preparation**:
+   - The dataset was stored in **AWS S3**, organized under the `Processed/` folder for easy access.
+   - The data was cleaned and standardized using **AWS Glue**, ensuring the consistency of important columns like "Bylaw" and "EntryDate."
+
+2. **Statistical Summarization**:
+   - **AWS Athena** was used to perform SQL queries that calculated statistics such as total violations per bylaw and the average number of tickets issued per year.
+   - These statistics helped pinpoint the bylaws with the highest number of violations.
+
+3. **Insights and Findings**:
+   - The descriptive analysis revealed that **Bylaw 2952** accounted for the majority of parking violations, with downtown areas experiencing the highest violation rates.
 
 **Tools and Technologies:**  
 - **AWS S3**: For structured data storage.
-- **AWS Athena**: For querying and calculating summary statistics.
-- **Amazon QuickSight**: For generating visual reports on the analysis results.
+- **AWS Glue**: For cleaning and preprocessing the dataset.
+- **AWS Athena**: For querying the dataset and generating descriptive statistics.
 
-**Deliverables:**  
-- Summary report on the most violated bylaws.
-- Bar charts showing total violations per year.
+**Deliverables:**
+- A detailed report summarizing the number of parking violations by bylaw.
+- Visualizations generated using **Excel** for better understanding of the trends.
 
 ---
 
 ## 3. Diagnostic Analysis
 
 **Project Title:**  
-*Diagnostic Analysis of Parking Violations in Vancouver: Investigating Contributing Factors*
+*Diagnostic Analysis of Parking Violations in Vancouver: Identifying Causes of Violations*
 
 **Objective:**  
-To determine the underlying reasons for observed trends in parking violations, such as why certain bylaws are more frequently violated and how changes in enforcement may have influenced these trends.
+To determine the factors driving parking violations in Vancouver, this analysis focuses on understanding the root causes behind the trends in the most violated bylaws and their geographic distribution.
 
 **Dataset:**  
-Historical parking ticket data from 2020-2024, including violation dates, bylaw numbers, and enforcement information.
+Parking ticket data categorized by bylaw, location, and year.
 
 **Methodology:**
-1. **Step 1:** All relevant datasets were stored in **AWS S3** under the `Processed/` folder.
-2. **Step 2:** Data analysis was performed using **AWS Glue** for aggregating violation counts by year and bylaw.
-3. **Step 3:** Correlation analysis was carried out using **AWS Athena** to explore relationships between geographic locations and violation frequency.
-4. **Step 4:** **Amazon QuickSight** was used to visualize the correlation between enforcement changes and violation rates.
+1. **Data Collection and Filtering**:
+   - The dataset was uploaded to **AWS S3** and prepared for analysis using **AWS Glue**.
+   - A filtering process was implemented to retain only valid violations (those marked as "Issued" in the status column).
+
+2. **Correlation Analysis**:
+   - **AWS Athena** was used to perform correlation analysis between bylaw violations and geographic factors (e.g., the number of violations per block).
+   - The data was segmented by location to assess which regions had the highest concentration of violations.
+
+3. **Insights and Findings**:
+   - The analysis revealed that violations were primarily concentrated in commercial districts with high traffic, particularly during weekdays.
+   - Changes in parking regulations, such as increased enforcement, had a measurable effect on reducing violations in some areas.
 
 **Tools and Technologies:**  
-- **AWS S3**: For storing and organizing processed datasets.
-- **AWS Glue**: For performing data transformations.
-- **AWS Athena**: For correlation analysis.
-- **Amazon QuickSight**: For visualizing diagnostic results.
+- **AWS S3**: For data storage.
+- **AWS Glue**: For data filtering and transformation.
+- **AWS Athena**: For conducting correlation analysis.
 
-**Deliverables:**  
-- Correlation heatmaps showing relationships between bylaw violations and enforcement changes.
-- Geographic visualizations showing high-violation areas.
+**Deliverables:**
+- A report detailing the root causes of parking violations.
+- Visualizations showing correlations between geographic factors and violation trends.
 
 ---
 
 ## 4. Data Wrangling
 
 **Project Title:**  
-*Data Wrangling for Parking Violations: Preparing Data for Analysis*
+*Data Wrangling for Parking Violations in Vancouver*
 
 **Objective:**  
-To clean and transform the raw parking ticket data, ensuring that it is structured and ready for analysis.
+To clean and prepare the parking violation data for further analysis by handling missing values, duplicates, and standardizing data formats.
 
 **Dataset:**  
-Raw parking ticket data from Vancouver’s Open Data Portal, with key fields such as violation dates, bylaw numbers, and geographic details.
+The raw dataset was sourced from the Vancouver Open Data Portal and included fields such as violation date, bylaw number, and block.
 
 **Methodology:**
-1. **Step 1:** The raw data was uploaded to **AWS S3** and organized by year in the `Landing/` folder.
-2. **Step 2:** **AWS Glue DataBrew** was used to clean the data by removing duplicate records, handling missing values, and standardizing formats.
-3. **Step 3:** The cleaned data was then stored in the `Processed/` folder on S3.
-4. **Step 4:** The data was validated using **AWS Glue** to ensure it met accuracy and consistency requirements.
+1. **Data Cleaning**:
+   - The raw data was uploaded to **AWS S3**.
+   - **AWS Glue DataBrew** was used to handle missing values, remove duplicate records, and standardize formats for key fields such as "EntryDate" and "Bylaw."
+
+2. **Data Transformation**:
+   - The cleaned dataset was transformed in **AWS Glue** to include additional features, such as aggregating the number of violations per block.
+   - The processed data was stored in the `Processed/` folder in **AWS S3**.
+
+3. **Validation**:
+   - The cleaned dataset was validated to ensure no missing values or inconsistencies, making it ready for subsequent analysis.
 
 **Tools and Technologies:**  
-- **AWS S3**: For storing raw and processed data.
-- **AWS Glue DataBrew**: For data cleaning and transformation.
-- **AWS Glue**: For further data validation.
+- **AWS S3**: For storing raw and processed datasets.
+- **AWS Glue DataBrew**: For cleaning and handling missing values.
+- **AWS Glue**: For transforming the dataset.
 
-**Deliverables:**  
-- A cleaned dataset, free from missing or duplicate values.
-- Documentation of the cleaning and transformation steps.
+**Deliverables:**
+- A cleaned dataset stored in **AWS S3**.
+- Documentation of the data wrangling process.
 
 ---
 
 ## 5. Data Quality Control
 
 **Project Title:**  
-*Ensuring Data Quality for Parking Violations: A Data Quality Control Approach*
+*Ensuring Data Quality in Parking Violations Analysis*
 
 **Objective:**  
-To ensure that the data is accurate, complete, and consistent by applying quality control measures during the analysis process.
+To ensure that the parking violation dataset is complete, accurate, and reliable, by applying data validation and quality control measures.
 
 **Dataset:**  
-Processed parking ticket data, including bylaw numbers, violation dates, and locations.
+The cleaned parking ticket dataset, categorized by bylaw and violation date.
 
 **Methodology:**
-1. **Step 1:** Data quality was assessed using **AWS Glue DataBrew**, which checked for missing values, duplicate rows, and invalid bylaw codes.
-2. **Step 2:** Validation rules were set in **AWS Glue** to ensure that only valid parking violations were included.
-3. **Step 3:** **AWS CloudWatch** was used to monitor the data quality metrics in real-time.
-4. **Step 4:** An **AWS IAM** policy was implemented to control access to sensitive data.
+1. **Data Profiling**:
+   - **AWS Glue DataBrew** was used to profile the dataset and assess the quality of key fields (e.g., completeness and accuracy of "Bylaw" and "EntryDate" columns).
+
+2. **Data Validation**:
+   - Custom validation rules were created in **AWS Glue** to check for missing or duplicate data entries, ensuring the dataset was complete and error-free.
+
+3. **Data Monitoring**:
+   - **AWS CloudWatch** was used to monitor the data ingestion and processing steps, tracking the number of violations processed and the consistency of data updates.
 
 **Tools and Technologies:**  
-- **AWS Glue DataBrew**: For checking and validating data quality.
-- **AWS CloudWatch**: For monitoring real-time data quality metrics.
-- **AWS IAM**: For managing access control.
+- **AWS Glue DataBrew**: For data profiling and validation.
+- **AWS CloudWatch**: For monitoring data quality.
 
-**Deliverables:**  
-- A final report on data quality, including checks for missing or inaccurate data.
-- A validated dataset ready for further analysis.
+**Deliverables:**
+- A data quality report outlining the validation steps and ensuring that the dataset meets quality standards.
+- A clean, validated dataset ready for further analysis.
