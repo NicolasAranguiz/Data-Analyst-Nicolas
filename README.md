@@ -1,4 +1,4 @@
-# Data-Analyst-Nicolas
+# Data-Driven Analytical Portfolio: Trends and Insights
 
 # Parking Violations in Vancouver: Data Analysis Project
 
